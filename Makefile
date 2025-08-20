@@ -48,18 +48,76 @@ sh:
 
 # Laravel
 LARAVEL_CONTAINER_NAME := "laravel"
+# Artisan command
 artisan:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan $(RUN_ARGS)
+# Create model with migration
 model:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan make:model $(RUN_ARGS) -m
+# Create controller with resource and migration
 controller:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan make:controller -r -m $(RUN_ARGS) # <Model> <Controller>
+# Create migration
+migration:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan make:migration $(RUN_ARGS)
+# Create seeder
+seeder:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan make:seeder $(RUN_ARGS)
+# Create factory
+factory:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan make:factory $(RUN_ARGS)
+# Run migrations
+migrate:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan migrate $(RUN_ARGS)
+# Run migrations and seed the database
+migrate-seed:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan migrate --seed $(RUN_ARGS)
+# Rollback migrations
+migrate-rollback:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan migrate:rollback $(RUN_ARGS)
+# Run tests
+test:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan test $(RUN_ARGS)
+# Seed the database
+db-seed:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan db:seed $(RUN_ARGS)
+# Clear cache
+cache-clear:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan cache:clear
+# Clear config cache
+config-clear:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan config:clear
+# Clear route cache
+route-clear:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan route:clear
 
 
 # Nuxt
 NUXT_CONTAINER_NAME := "nuxt"
+# NPM command
 npm:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(NUXT_CONTAINER_NAME) npm $(RUN_ARGS)
+# Install dependencies
+install:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(NUXT_CONTAINER_NAME) npm install
+# Run development server
+dev:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(NUXT_CONTAINER_NAME) npm run dev
+# Build the project
+build:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(NUXT_CONTAINER_NAME) npm run build
+# Start the production server
+start:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(NUXT_CONTAINER_NAME) npm run start
+# Run tests
+test:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(NUXT_CONTAINER_NAME) npm run test
+# Lint the code
+lint:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(NUXT_CONTAINER_NAME) npm run lint
+# Clean the .nuxt directory
+clean:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(NUXT_CONTAINER_NAME) rm -rf .nuxt
 
 
 # Overriding targets other then the first one, so we could use targets as positional arguments (e.g: make manage check)
