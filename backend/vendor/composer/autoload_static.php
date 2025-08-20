@@ -523,6 +523,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
 
     public static $classMap = array (
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Models\\Cars' => __DIR__ . '/../..' . '/app/Models/Cars.php',
+        'App\\Models\\Events' => __DIR__ . '/../..' . '/app/Models/Events.php',
+        'App\\Models\\Guides' => __DIR__ . '/../..' . '/app/Models/Guides.php',
+        'App\\Models\\LogEvents' => __DIR__ . '/../..' . '/app/Models/LogEvents.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
