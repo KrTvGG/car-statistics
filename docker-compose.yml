@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: car_stats
+      POSTGRES_USER: car_stats
+      POSTGRES_PASSWORD: changeme
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  laravel:
+    build:
+      context: .
+      dockerfile: ./backend.Dockerfile
+    depends_on:
+      - postgres
+    user: ${UID:-1000}:${GID:-1000}
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend:/app
+
+  nuxt:
+    build:
+      context: .
+      dockerfile: ./frontend.Dockerfile
+    depends_on:
+      - laravel
+    environment:
+      SSR_API_HOST : http://laravel/
+      CSR_API_HOST : http://localhost/
+    user: ${UID:-1000}:${GID:-1000}
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app
+
+volumes:
+  postgres_data:
