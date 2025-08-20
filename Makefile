@@ -70,25 +70,25 @@ factory:
 migrate:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan migrate $(RUN_ARGS)
 # Run migrations and seed the database
-migrate:seed:
+migrate-seed:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan migrate --seed $(RUN_ARGS)
 # Rollback migrations
-migrate:rollback:
+migrate-rollback:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan migrate:rollback $(RUN_ARGS)
 # Run tests
 test:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan test $(RUN_ARGS)
 # Seed the database
-db:seed:
+db-seed:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan db:seed $(RUN_ARGS)
 # Clear cache
-cache:clear:
+cache-clear:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan cache:clear
 # Clear config cache
-config:clear:
+config-clear:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan config:clear
 # Clear route cache
-route:clear:
+route-clear:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan route:clear
 
 
