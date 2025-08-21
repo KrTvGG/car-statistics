@@ -1,0 +1,112 @@
+@use '~/assets/scss/runtime/functions' as *;
+
+@mixin h0 {
+    font-size: clampFluid(96);
+    line-height: 120%;
+    font-weight: 400;
+    color: currentColor;
+
+    @include tablet {
+        font-size: 35px;
+    }
+}
+@mixin h1 {
+    font-size: clampFluid(64);
+    line-height: 120%;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: currentColor;
+
+    @include tablet {
+        font-size: 30px;
+    }
+}
+@mixin h2 {
+    font-size: clampFluid(48);
+    line-height: 120%;
+    font-weight: 500;
+    color: currentColor;
+}
+@mixin h3 {
+    font-size: clampFluid(27);
+    line-height: 120%;
+    font-weight: 500;
+    color: currentColor;
+
+    @include tablet {
+        font-size: 18px;
+    }
+}
+@mixin p1 {
+    font-size: clampFluid(25);
+    line-height: 120%;
+    font-weight: 500;
+    color: currentColor;
+}
+@mixin p2 {
+    font-size: clampFluid(18, 22);
+    line-height: 130%;
+    font-weight: 500;
+    color: currentColor;
+}
+@mixin p3 {
+    font-size: clampFluid(14, 18);
+    line-height: 120%;
+    font-weight: 500;
+    color: currentColor;
+}
+
+$desktop: 1921;
+$laptop: 1280;
+$tablet: 1023;
+$mobile: 768;
+
+@mixin desktop-above {
+    @media (width > #{$desktop}px) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media (width <= #{$laptop}px) {
+        @content;
+    }
+}
+
+@mixin laptop-above {
+    @media (width > #{$laptop}px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (width <= #{$tablet}px) {
+        @content;
+    }
+}
+
+@mixin tablet-above {
+    @media (width > #{$tablet}px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (width <= #{$mobile}px) {
+        @content;
+    }
+}
+
+@mixin mobile-above {
+    @media (width > #{$mobile}px) {
+        @content;
+    }
+}
+
+@mixin hover {
+    @media (hover: hover) {
+        &:hover {
+            @content;
+        }
+    }
+}

@@ -1,0 +1,45 @@
+@function clampFluid($clamp-min, $clamp-max: 'None', $calc-1: 'None', $calc-2: 'None', $w-min: 'None', $w-max: 'None'){
+    @if $clamp-max == 'None'{
+        $clamp-max: $clamp-min;
+        $clamp-min: calc($clamp-max * 2 / 3);
+    };
+    $clamp-min-rend: 'None';
+    $clamp-max-rend: 'None';
+
+    $w: calc($clamp-max/1920 * 100 * 1vw);
+
+    @if $clamp-min == 0{
+        $clamp-min: 0.001;
+    }
+
+    @if $clamp-max == 0{
+        $clamp-max: 0.001;
+    }
+
+    @if $clamp-max < $clamp-min{
+        $clamp-min-rend: $clamp-max * 1px;
+        $clamp-max-rend: $clamp-min * 1px;
+    }
+    @else {
+        $clamp-max-rend: $clamp-max * 1px;
+        $clamp-min-rend: $clamp-min * 1px;
+    }
+    
+    @if $calc-1 == 'None'{
+        @return clamp($clamp-min-rend, $w, $clamp-max-rend);
+    };
+
+    @if $w-min == 'None'{
+        $k: ($clamp-max - $clamp-min)/($calc-2 - $calc-1);
+        $b: $clamp-min - $k * $calc-1;
+        $b: $b * 1px;
+        @return clamp($clamp-min-rend, calc(#{$k} * 100vw + #{$b} ), $clamp-max-rend);
+    };
+
+    @if $w-max != 'None'{
+        $k: ($calc-2 - $calc-1)/($w-max - $w-min);
+        $b: $calc-1 - $k * $w-min;
+        $b: $b * 1px;
+        @return clamp($clamp-min-rend, calc(#{$k} * 100vw + #{$b} ), $clamp-max-rend);
+    }
+}
