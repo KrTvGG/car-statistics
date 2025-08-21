@@ -1,0 +1,65 @@
+body {
+    &.lock {
+        overflow: hidden;
+    }
+}
+
+.container {
+    width: clampFluid(1756);
+    margin: 0 auto;
+
+    @include laptop {
+        width: 100%;
+        padding: 0 21px;
+    }
+}
+
+.desktop-hidden {
+    @include tablet-above {
+        display: none !important;
+    }
+}
+
+.mobile-hidden {
+    @include tablet {
+        display: none !important;
+    }
+}
+
+.link {
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    transition: $tr;
+    @include hover {
+        opacity: 0.5;
+        text-decoration: none;
+    }
+}
+
+.h0 {
+    @include h0;
+}
+
+.h1 {
+    @include h1;
+}
+
+.h2 {
+    @include h2;
+}
+
+.h3 {
+    @include h3;
+}
+
+.p1 {
+    @include p1;
+}
+
+.p2 {
+    @include p2;
+}
+
+.p3 {
+    @include p3;
+}
