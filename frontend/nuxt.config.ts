@@ -19,8 +19,8 @@ export default defineNuxtConfig({
     }
   },
   css: [
-    "~/assets/scss/reset.scss",
-    "~/assets/scss/additional.scss",
+    "@assets/scss/reset.scss",
+    "@assets/scss/additional.scss",
   ],
   vite: {
     resolve: {
