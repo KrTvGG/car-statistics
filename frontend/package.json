@@ -7,14 +7,22 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "format": "prettier --write \"{components,composables,layouts,pages,plugins,server,middleware,stores,utils}/**/*.{js,ts,vue,scss}\"",
+    "prepare": "husky"
   },
   "dependencies": {
     "@nuxt/eslint": "^1.9.0",
     "@nuxt/icon": "^2.0.0",
     "@nuxt/image": "^1.11.0",
+    "@pinia/nuxt": "^0.11.2",
     "eslint": "^9.33.0",
+    "husky": "^9.1.7",
     "nuxt": "^4.0.3",
+    "pinia": "^3.0.3",
+    "prettier": "^3.6.2",
+    "sass": "^1.90.0",
+    "swiper": "^11.2.10",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"
   },
