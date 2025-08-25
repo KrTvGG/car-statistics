@@ -90,6 +90,9 @@ config-clear:
 # Clear route cache
 route-clear:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan route:clear
+# List route
+route-list:
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) exec $(LARAVEL_CONTAINER_NAME) php artisan route:list
 
 
 # Nuxt

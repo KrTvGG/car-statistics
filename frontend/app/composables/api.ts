@@ -1,36 +1,33 @@
 type TMethod = "GET" | "PATCH" | "POST" | "PUT" | "DELETE"
 
 export const getAPIUrl = () => {
-    let url = `${useRequestURL().protocol}//${useRequestURL().hostname}`
-    if (process.server) url = url.replace("localhost", "laravel:8000")
+    let url = `${useRequestURL().protocol}//${useRequestURL().hostname}:8000`
+    // if (process.server) url = url.replace("localhost", "localhost:8000")
 
     return url
 }
-let csrf: string
 
-export const useRequest = async <T>(
+export const request = async <T> (
     url: string,
     method?: TMethod,
     body?: TRequestBody,
 ) => {
-    url = getAPIUrl() + url
-    if (!csrf && method != "GET")
-        csrf = await $fetch<string>(`${getAPIUrl()}/api/v1/csrf_generate/`)
-    const response = await useFetch(url, {
-        method,
-        [method == "GET" ? "params" : "body"]: body,
+    const fetchData  = {
+        method: method,
+        params: method == 'GET' ? body : undefined,
+        body: method != 'GET' ? body : undefined,
         headers: {
-            "X-CSRFToken": csrf,
-            ...useRequestHeaders(["cookie"]),
+            ...useRequestHeaders(['cookie']),
         },
-        credentials: "include",
-    })
-
-    if (response.error.value) throw createError(response.error.value)
-    return {
-        error: response.error,
-        data: response.data as Ref<T>,
-        refresh: response.refresh,
-        status: response.status,
+        credentials: 'include',
+    }
+    url = getAPIUrl() + url
+    if (process.client)
+        return await $fetch<T>(url, fetchData)
+    else{
+        const { data, error } = await useFetch(url)
+        if (error.value)
+            throw createError(error.value)
+        return <T>data.value
     }
 }
