@@ -6,8 +6,10 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\DTOs\\CreateGuideDto' => $baseDir . '/app/DTOs/CreateGuideDto.php',
     'App\\Http\\Controllers\\Api\\ApiController' => $baseDir . '/app/Http/Controllers/Api/ApiController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\GuidesController' => $baseDir . '/app/Http/Controllers/GuidesController.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Models\\Cars' => $baseDir . '/app/Models/Cars.php',
     'App\\Models\\Events' => $baseDir . '/app/Models/Events.php',
@@ -15,6 +17,9 @@ return array(
     'App\\Models\\LogEvents' => $baseDir . '/app/Models/LogEvents.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
+    'App\\Repositories\\GuidesRepository' => $baseDir . '/app/Repositories/GuidesRepository.php',
+    'App\\Repositories\\Interfaces\\GuidesRepositoryInterface' => $baseDir . '/app/Repositories/Interfaces/GuidesRepositoryInterface.php',
+    'App\\Services\\GuidesService' => $baseDir . '/app/Services/GuidesService.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'Brick\\Math\\BigDecimal' => $vendorDir . '/brick/math/src/BigDecimal.php',
     'Brick\\Math\\BigInteger' => $vendorDir . '/brick/math/src/BigInteger.php',

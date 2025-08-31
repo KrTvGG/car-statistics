@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\GuidesRepository;
+use App\Repositories\Interfaces\GuidesRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(
+            GuidesRepositoryInterface::class,
+            GuidesRepository::class
+        );
     }
 
     /**

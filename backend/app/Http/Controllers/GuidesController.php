@@ -2,25 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\CreateGuideDto;
+use App\Http\Requests\StoreGuideRequest;
 use App\Models\Guides;
+use App\Repositories\Interfaces\GuidesRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Services\GuidesService;
 
 class GuidesController extends Controller
 {
-    private $guidesService;
-
-    public function __construct(GuidesService $guidesService)
-    {
-        $this->guidesService = $guidesService;
-    }
+    public function __construct(private GuidesRepositoryInterface $repository) {}
 
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $list = $this->guidesService->list();
+        $list = $this->repository->list();
     }
 
     /**
@@ -32,11 +29,14 @@ class GuidesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create guide.
      */
-    public function store(Request $request)
+    public function store(StoreGuideRequest $request)
     {
-        //
+        $dto = CreateGuideDto::fromRequest($request);
+        $guide = $this->repository->create($dto);
+
+        return response()->json($guide, 201);
     }
 
     /**

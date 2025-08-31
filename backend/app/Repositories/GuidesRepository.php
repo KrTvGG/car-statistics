@@ -2,13 +2,33 @@
 
 namespace App\Repositories;
 
-class GuidesRepository
+use App\DTOs\CreateGuideDto;
+use App\Models\Guides;
+use App\Repositories\Interfaces\GuidesRepositoryInterface;
+
+class GuidesRepository implements GuidesRepositoryInterface
 {
-    public function list(): array
+    public function list(): Guides
     {
-        return [
-            'one' => 1,
-            'two' => 2
-        ];
+        $guides = Guides::select([
+                'id',
+                'make',
+                'model',
+                'year',
+                'body_type',
+                'engine_type',
+                'engine_capacity',
+                'power',
+                'transmission',
+                'drive_type'
+            ])
+            ->get();
+
+        return $guides;
+    }
+
+    public function create(CreateGuideDto $dto): Guides
+    {
+        return Guides::create($dto->toArray());
     }
 }
