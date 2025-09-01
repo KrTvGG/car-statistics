@@ -527,10 +527,8 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
     );
 
     public static $classMap = array (
-        'App\\DTOs\\CreateGuideDto' => __DIR__ . '/../..' . '/app/DTOs/CreateGuideDto.php',
         'App\\Http\\Controllers\\Api\\ApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ApiController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
-        'App\\Http\\Controllers\\GuidesController' => __DIR__ . '/../..' . '/app/Http/Controllers/GuidesController.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Cars' => __DIR__ . '/../..' . '/app/Models/Cars.php',
         'App\\Models\\Events' => __DIR__ . '/../..' . '/app/Models/Events.php',
@@ -538,9 +536,6 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Models\\LogEvents' => __DIR__ . '/../..' . '/app/Models/LogEvents.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
-        'App\\Repositories\\GuidesRepository' => __DIR__ . '/../..' . '/app/Repositories/GuidesRepository.php',
-        'App\\Repositories\\Interfaces\\GuidesRepositoryInterface' => __DIR__ . '/../..' . '/app/Repositories/Interfaces/GuidesRepositoryInterface.php',
-        'App\\Services\\GuidesService' => __DIR__ . '/../..' . '/app/Services/GuidesService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
         'Brick\\Math\\BigInteger' => __DIR__ . '/..' . '/brick/math/src/BigInteger.php',
