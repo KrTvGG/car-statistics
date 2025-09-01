@@ -2,72 +2,60 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GuidesRequest;
+use App\Http\Resources\GuideResource;
 use App\Models\Guides;
-use Illuminate\Http\Request;
-use App\Services\GuidesService;
 
 class GuidesController extends Controller
 {
-    private $guidesService;
-
-    public function __construct(GuidesService $guidesService)
-    {
-        $this->guidesService = $guidesService;
-    }
+    public function __construct() {}
 
     /**
      * Display a listing of the resource.
+     * GET /api/v1/guides
      */
     public function index()
     {
-        $list = $this->guidesService->list();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $query = Guides::filter(request()->all());
+        return GuideResource::collection($query->get());
     }
 
     /**
      * Store a newly created resource in storage.
+     * POST /api/v1/guides
      */
-    public function store(Request $request)
+    public function store(GuidesRequest $request)
     {
-        //
+        $guide = Guides::create($request->validated());
+        return new GuideResource($guide);
     }
 
     /**
      * Display the specified resource.
+     * GET /api/v1/guides/{id}
      */
-    public function show(Guides $guides)
+    public function show(Guides $guide)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Guides $guides)
-    {
-        //
+        return new GuideResource($guide);
     }
 
     /**
      * Update the specified resource in storage.
+     * PUT /api/v1/guides/{id}
      */
-    public function update(Request $request, Guides $guides)
+    public function update(GuidesRequest $request, Guides $guide)
     {
-        //
+        $guide->update($request->validated());
+        return new GuideResource($guide);
     }
 
     /**
      * Remove the specified resource from storage.
+     * DELETE /api/v1/guides/{id}
      */
-    public function destroy(Guides $guides)
+    public function destroy(Guides $guide)
     {
-        //
+        $guide->delete();
+        return response()->json(null, 204);
     }
 }
