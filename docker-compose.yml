@@ -35,6 +35,7 @@ services:
       CSR_API_HOST : http://localhost/
     user: ${UID:-1000}:${GID:-1000}
     ports:
+      - 80:3000
       - 3000:3000
     volumes:
       - ./frontend:/app

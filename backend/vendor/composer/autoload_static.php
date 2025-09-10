@@ -531,6 +531,8 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\GuidesController' => __DIR__ . '/../..' . '/app/Http/Controllers/GuidesController.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\GuidesRequest' => __DIR__ . '/../..' . '/app/Http/Requests/GuidesRequest.php',
+        'App\\Http\\Resources\\GuideResource' => __DIR__ . '/../..' . '/app/Http/Resources/GuideResource.php',
         'App\\Models\\Cars' => __DIR__ . '/../..' . '/app/Models/Cars.php',
         'App\\Models\\Events' => __DIR__ . '/../..' . '/app/Models/Events.php',
         'App\\Models\\Guides' => __DIR__ . '/../..' . '/app/Models/Guides.php',

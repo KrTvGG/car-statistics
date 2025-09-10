@@ -10,6 +10,8 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\GuidesController' => $baseDir . '/app/Http/Controllers/GuidesController.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Http\\Requests\\GuidesRequest' => $baseDir . '/app/Http/Requests/GuidesRequest.php',
+    'App\\Http\\Resources\\GuideResource' => $baseDir . '/app/Http/Resources/GuideResource.php',
     'App\\Models\\Cars' => $baseDir . '/app/Models/Cars.php',
     'App\\Models\\Events' => $baseDir . '/app/Models/Events.php',
     'App\\Models\\Guides' => $baseDir . '/app/Models/Guides.php',
