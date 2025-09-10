@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarsController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\GuidesController;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ Route::get('/user', function (Request $request) {
 Route::prefix('v1')->group(function () {
     Route::apiResource('guides', GuidesController::class);
     Route::apiResource('events', EventsController::class);
+    Route::apiResource('cars', CarsController::class);
 
     Route::get('/test-route', [ApiController::class, 'helloWorld']);
     Route::post('/test-route', [ApiController::class, 'getAndTakeText']);
