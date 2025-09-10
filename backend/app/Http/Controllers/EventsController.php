@@ -27,7 +27,13 @@ class EventsController
     public function store(EventsRequest $request)
     {
         $event = Events::create($request->validated());
-        return new EventsResource($event);
+        return (new EventsResource($event))
+            ->additional([
+                'status' => 'success',
+                'message' => 'Событие успешно создано.'
+                ])
+            ->response()
+            ->setStatusCode(201);
     }
 
     /**
@@ -46,7 +52,13 @@ class EventsController
     public function update(EventsRequest $request, Events $event)
     {
         $event->update($request->validated());
-        return new EventsResource($event);
+        return (new EventsResource($event))
+            ->additional([
+                'status' => 'success',
+                'message' => 'Данные события успешно обновлены.'
+                ])
+            ->response()
+            ->setStatusCode(201);
     }
 
     /**
@@ -56,6 +68,9 @@ class EventsController
     public function destroy(Events $event)
     {
         $event->delete();
-        return response()->json(null, 204);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Событие успешно удалено.'
+        ], 200);
     }
 }
