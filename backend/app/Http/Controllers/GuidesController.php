@@ -27,7 +27,13 @@ class GuidesController extends Controller
     public function store(GuidesRequest $request)
     {
         $guide = Guides::create($request->validated());
-        return new GuideResource($guide);
+        return (new GuideResource($guide))
+            ->additional([
+                'status' => 'success',
+                'message' => 'Справочник успешно создан.'
+                ])
+            ->response()
+            ->setStatusCode(201);
     }
 
     /**
@@ -46,7 +52,13 @@ class GuidesController extends Controller
     public function update(GuidesRequest $request, Guides $guide)
     {
         $guide->update($request->validated());
-        return new GuideResource($guide);
+        return (new GuideResource($guide))
+            ->additional([
+                'status' => 'success',
+                'message' => 'Данные в справочнике успешно обновлены.'
+                ])
+            ->response()
+            ->setStatusCode(201);
     }
 
     /**
@@ -56,6 +68,9 @@ class GuidesController extends Controller
     public function destroy(Guides $guide)
     {
         $guide->delete();
-        return response()->json(null, 204);
+                return response()->json([
+            'status' => 'success',
+            'message' => 'Справочник успешно удален.'
+        ], 200);
     }
 }
